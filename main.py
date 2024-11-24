@@ -39,11 +39,17 @@ def main():
         screen.fill(colour)
         for thing in updatable:
             thing.update(dt)
-        
+
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 print("Game Over!")
                 sys.exit()
+
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    shot.kill()
+                    asteroid.split() 
+                    
 
         for thing in drawable:
             thing.draw(screen)
